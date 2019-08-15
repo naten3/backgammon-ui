@@ -1,0 +1,21 @@
+.space {
+    height: 220px;
+    width: 60px;
+}
+
+svg {
+    height: 100%;
+    width: 100%;
+}
+
+.space.light {
+    fill: #F9E4B7;
+}
+
+.space.dark {
+    fill: #b5651d;
+}
+
+.space.bottom-row {
+
+}
