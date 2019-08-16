@@ -27,7 +27,7 @@ class GameComponent extends Component<Props> {
   render() {
     return (
       <div>
-        <h1>Game component</h1>
+        <button>Join Game</button>
         <Board board={this.props.game.board}/>
       </div>
     );

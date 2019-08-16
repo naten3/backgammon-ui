@@ -23,18 +23,18 @@ const BoardComponent: FC<OwnProps> =  function(props: OwnProps): ReactElement<Ow
     <div className="frame">
       <div className="left half">
         <div className="top quarter">
-        {topLeftSpaces.map(space => <Space space={space.space} index={space.index}/>)}
+        {topLeftSpaces.map(space => <Space space={space.space} index={space.index} key={space.index}/>)}
         </div>
         <div className="bottom quarter">
-        {bottomLeftSpaces.map(space => <Space space={space.space} index={space.index}/>)}
+        {bottomLeftSpaces.map(space => <Space space={space.space} index={space.index} key={space.index}/>)}
         </div>
       </div>
       <div className="right half">
         <div className="top quarter">
-        {topRigthSpaces.map(space => <Space space={space.space} index={space.index}/>)}
+        {topRigthSpaces.map(space => <Space space={space.space} index={space.index} key={space.index}/>)}
           </div>
           <div className="bottom quarter">
-          {bottomRightSpaces.map(space => <Space space={space.space} index={space.index}/>)}
+          {bottomRightSpaces.map(space => <Space space={space.space} index={space.index} key={space.index}/>)}
         </div>
       </div>
     </div>
