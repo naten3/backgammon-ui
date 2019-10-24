@@ -1,19 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Dispatch } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import { AppState } from './reducers/root.reducer';
-import { ThunkDispatch } from 'redux-thunk';
-import { getToken } from './util/storage.utils';
-import { fetchToken } from './actions/user/actions';
+import { authenticateAction } from './actions/user/actions';
+import { UserActionTypes } from './actions/user/types';
 
 export interface OwnProps {
 }
 
 interface StateProps {
 }
-     
+
 interface DispatchProps {
-  authenticate: () => void
+  authenticate: () => UserActionTypes
 }
 
 type Props = OwnProps & DispatchProps & StateProps;
@@ -35,7 +34,7 @@ const App: React.FC<Props> = (props) => {
 const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps => {
   return {}
 }
- 
-const mapDispatchToProps = { authenticate: fetchToken }
+
+const mapDispatchToProps = (dispatch: any) => ({ authenticate: () => dispatch(authenticateAction()) })
 
 export default connect<StateProps, DispatchProps, OwnProps, AppState>(mapStateToProps, mapDispatchToProps)(App)

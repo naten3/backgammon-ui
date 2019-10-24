@@ -1,15 +1,21 @@
 import { Game } from "../../store/game/types";
 
+export const AUTHENTICATE = 'AUTHENTICATE';
 export const SET_AUTHENTICATED = 'SET_AUTHENTICATED'
 export const FETCHING_AUTHENTICATION = 'FETCHING_AUTHENTICATION'
 
-interface SetAuthenticated {
-  type: typeof SET_AUTHENTICATED
-  payload: string
+export interface AuthenticateAction {
+  type: typeof AUTHENTICATE;
 }
 
-interface FetchingAuthentication {
+export interface SetAuthenticatedAction {
+  type: typeof SET_AUTHENTICATED;
+  payload: string;
+}
+
+export interface FetchingAuthenticationAction {
   type: typeof FETCHING_AUTHENTICATION
 }
 
-export type UserActionTypes = SetAuthenticated | FetchingAuthentication
+
+export type UserActionTypes = SetAuthenticatedAction | FetchingAuthenticationAction | AuthenticateAction;

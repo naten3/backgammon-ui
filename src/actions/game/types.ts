@@ -10,9 +10,6 @@ interface SendMessageAction {
 
 interface DeleteMessageAction {
   type: typeof DELETE_MESSAGE
-  meta: {
-    timestamp: number
-  }
 }
 
 export type GameActionTypes = SendMessageAction | DeleteMessageAction
