@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, FC, ReactElement, useEffect } from "react";
 import { withRouter } from 'react-router-dom';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
@@ -24,32 +24,28 @@ interface DispatchProps {
 
 type Props = OwnProps & DispatchProps & StateProps;
 
-class GameComponent extends Component<Props> {
+const GameComponent: FC<Props> = function (props: Props): ReactElement<Props> {
 
-  getGameId() {
+  const getGameId = () => {
     //@ts-ignore
-    return this.props.match.params.gameId;
+    return props.match.params.gameId;
   }
 
-  joinGame() {
-    this.props.joinGameAction(this.getGameId())
+  const joinGame = () => {
+    props.joinGameAction(getGameId())
   }
 
-  render() {
-    return (
-      <div>
-        <button onClick={this.joinGame}>Join Game</button>
-        <Board board={this.props.game.board} />
-      </div>
-    );
-  }
-
-  componentDidMount() {
-    //@ts-ignore
-    const gameId = this.getGameId();
+  useEffect(() => {
+    const gameId = getGameId();
     console.log(`component did mount ` + gameId);
-    this.props.navigateToGameAction(gameId);
-  }
+    props.navigateToGameAction(gameId);
+  }, []);
+
+  return (<div>
+    <button onClick={joinGame}>Join Game</button>
+    <Board board={props.game.board} />
+  </div>)
+
 }
 
 const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps => {

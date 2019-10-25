@@ -11,7 +11,8 @@ export interface OwnProps {
 }
 
 interface StateProps {
-  displayName: string
+  displayName: string,
+  emptyStringDisplayName: string
 }
 
 interface DispatchProps {
@@ -30,12 +31,12 @@ const App: React.FC<Props> = (props) => {
 
   return (
     <div className="App">
-      <EditableLabel text={props.displayName}
+      <EditableLabel text={props.emptyStringDisplayName}
         labelClassName='myLabelClass'
         inputClassName='myInputClass'
         inputWidth='200px'
-        inputHeight='25px'
-        inputMaxLength='50'
+        inputHeight='50px'
+        inputMaxLength={50}
         labelFontWeight='bold'
         inputFontWeight='bold'
         onFocusOut={(val) => props.changeName(val.text)}
@@ -46,7 +47,8 @@ const App: React.FC<Props> = (props) => {
 
 const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps => {
   return {
-    displayName: state.user.displayName
+    displayName: state.user.displayName,
+    emptyStringDisplayName: state.user.displayName || ''
   }
 }
 
