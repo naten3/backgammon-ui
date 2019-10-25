@@ -5,7 +5,7 @@ import { SET_AUTHENTICATED, SetAuthenticatedAction, AUTHENTICATE, NAVIGATED_TO_G
 import { websocketAuthenticate, websocketWatchGame } from "../ws/actions";
 import { ActionsObservable } from "redux-observable";
 import { AllActionTypes } from '../allActions';
-import { OpenWsAction, WS_OPEN, WS_AUTHENTICATED, WsAuthenticatedAction } from "../ws/types";
+import { OpenWsAction, WS_OPEN, WS_AUTHENTICATED, WsAuthenticatedAction, WsChangeNameAction, WS_CHANGE_NAME } from "../ws/types";
 import axios from 'axios';
 import { setToken, getUserIdFromToken, getToken } from '../../util/storage.utils'
 import { setAuthenticated, navigatedToGameAction } from "./actions";

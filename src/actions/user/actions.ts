@@ -1,4 +1,5 @@
 import { FETCHING_AUTHENTICATION, AUTHENTICATE, SetAuthenticatedAction, AuthenticateAction, FetchingAuthenticationAction, NavigatedToGameAction, NAVIGATED_TO_GAME } from "./types";
+import { WsChangeNameAction } from "../ws/types";
 
 export function authenticateAction(): AuthenticateAction {
   return {

@@ -4,6 +4,7 @@ export const WS_AUTHENTICATE = 'wsAuthenticate'
 export const WS_OPEN = `@@websocket/${OPEN}`;
 export const WS_WATCH_GAME = 'wsWatchGame';
 export const WS_JOIN_GAME = 'wsJoinGame';
+export const WS_CHANGE_NAME = 'wsChangeName';
 
 // received messages
 export const WS_AUTHENTICATED = 'wsAuthenticated';
@@ -33,8 +34,16 @@ export interface WsJoinGameAction extends WebsocketSendAction {
   payload: string;
 }
 
+export interface WsChangeNameAction extends WebsocketSendAction {
+  type: typeof WS_CHANGE_NAME;
+  payload: string;
+}
+
+// received messages
+
 export interface WsAuthenticatedAction {
   type: typeof WS_AUTHENTICATED;
+  payload: string; // { username }
 }
 
 export interface WsUserJoinedAction {
@@ -47,5 +56,5 @@ export interface WsWatchedGameAction {
   payload: Game;
 }
 
-export type WebsocketActionTypes = Authenticate | OpenWsAction |
+export type WebsocketActionTypes = Authenticate | OpenWsAction | WsChangeNameAction |
   WsWatchGameAction | WsJoinGameAction | WsAuthenticatedAction | WsUserJoinedAction | WsWatchedGameAction

@@ -26,12 +26,6 @@ type Props = OwnProps & DispatchProps & StateProps;
 
 class GameComponent extends Component<Props> {
 
-  constructor(props) {
-    super(props);
-    this.getGameId = this.getGameId.bind(this);
-    this.joinGame = this.joinGame.bind(this);
-  }
-
   getGameId() {
     //@ts-ignore
     return this.props.match.params.gameId;
