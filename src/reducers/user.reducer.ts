@@ -3,22 +3,22 @@ import { UserState } from "../store/user/types";
 import { SET_AUTHENTICATED, UserActionTypes, FETCHING_AUTHENTICATION } from "../actions/user/types";
 //@ts-ignore
 import { OPEN } from 'redux-websocket-bridge';
-import { WS_OPEN } from "../actions/ws/types";
+import { WS_OPEN, WS_AUTHENTICATED, WebsocketActionTypes, WsAuthenticatedAction } from "../actions/ws/types";
 
 const initialState: UserState = {
   userId: null,
   hasAuthed: false,
   fetchingToken: false,
-  websocketConnected: false
+  websocketConnected: false,
+  wsAuthed: false
 }
 
 export function userReducer(
   state = initialState,
-  action: UserActionTypes
+  action: UserActionTypes | WsAuthenticatedAction
 ): UserState {
   switch (action.type) {
     case SET_AUTHENTICATED:
-      const userId = action.payload;
       return {
         ...state,
         userId: action.payload,
@@ -35,6 +35,11 @@ export function userReducer(
       return {
         ...state,
         websocketConnected: true
+      }
+    case WS_AUTHENTICATED:
+      return {
+        ...state,
+        wsAuthed: true
       }
     default:
       return state

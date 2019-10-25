@@ -1,6 +1,5 @@
 .space {
-    height: 220px;
-    width: 60px;
+    position: relative;
 }
 
 svg {
@@ -8,12 +7,46 @@ svg {
     width: 100%;
 }
 
-.space.light {
+.triangle {
+    height: 100%;
+    width: 100%;
+    position: absolute
+}
+
+.space .light {
     fill: #F9E4B7;
 }
 
-.space.dark {
+.space .dark {
     fill: #b5651d;
+}
+
+.pieces {
+    z-index: 10;
+    position: absolute;
+}
+
+.pieceWrapper {
+    display:flex;
+    align-items: center;
+    align-content: flex-start;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.piece {
+    border-radius: 50%;
+    border: 1px #000000 solid;
+    box-sizing: border-box;
+}
+
+.piece.black {
+    background-color: #000000;
+    border-color: #FFFFFF;
+}
+
+.piece.white {
+    background-color: #FFFFFF;
 }
 
 .space.bottom-row {
