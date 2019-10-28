@@ -4,6 +4,7 @@ export const AUTHENTICATE = 'AUTHENTICATE';
 export const SET_AUTHENTICATED = 'SET_AUTHENTICATED'
 export const FETCHING_AUTHENTICATION = 'FETCHING_AUTHENTICATION'
 export const NAVIGATED_TO_GAME = 'NAVIGATED_TO_GAME';
+export const UPDATE_LOCAL_NAME = 'UPDATE_LOCAL_NAME';
 
 export interface AuthenticateAction {
   type: typeof AUTHENTICATE;
@@ -23,6 +24,11 @@ export interface NavigatedToGameAction {
   payload: string; // gameId
 }
 
+export interface UpdateLocalNameAction {
+  type: typeof UPDATE_LOCAL_NAME;
+  payload: string;
+}
+
 
 export type UserActionTypes = SetAuthenticatedAction | FetchingAuthenticationAction | AuthenticateAction
-  | NavigatedToGameAction;
+  | NavigatedToGameAction | UpdateLocalNameAction;

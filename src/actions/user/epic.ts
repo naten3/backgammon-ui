@@ -14,9 +14,6 @@ export const userEpic = (action$: ActionsObservable<AllActionTypes>) => {
   const wsAuthenticated$ = action$.ofType<WsAuthenticatedAction>(WS_AUTHENTICATED).pipe(
     first(), publishReplay(1), refCount());
 
-  wsAuthenticated$.subscribe((action) => console.log('ws authenticated emitted'));
-  wsAuthenticated$.subscribe((action) => console.log('ws authenticated emitted again'));
-
   return merge(authenticateWebsocket(action$), fetchActions(action$), wsWatchGameOnChange(action$, wsAuthenticated$));
 }
 

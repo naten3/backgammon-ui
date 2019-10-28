@@ -14,10 +14,10 @@ const initialState: GameState = {
     blackInitialRoll: 0,
     whiteInitialRoll: 0,
     currentRoll: null,
-    currentTurn: Color.None,
-    whiteName: null,
-    blackName: null
-  }
+    currentTurn: Color.None
+  },
+  whiteName: null,
+  blackName: null
 }
 
 export function gameReducer(
@@ -29,7 +29,9 @@ export function gameReducer(
     case WS_USER_JOINED:
       return {
         ...state,
-        game: action.payload
+        game: action.payload.game,
+        whiteName: action.payload.whiteName,
+        blackName: action.payload.blackName
       };
     default:
       return state

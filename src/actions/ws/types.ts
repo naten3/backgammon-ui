@@ -10,6 +10,7 @@ export const WS_CHANGE_NAME = 'wsChangeName';
 export const WS_AUTHENTICATED = 'wsAuthenticated';
 export const WS_WATCHED_GAME = 'wsWatchedGame';
 export const WS_USER_JOINED = 'wsUserJoined';
+export const WS_USER_NAME_CHANGED = 'wsUserNameChanged';
 
 interface WebsocketSendAction {
   meta: { send: true }
@@ -43,18 +44,31 @@ export interface WsChangeNameAction extends WebsocketSendAction {
 
 export interface WsAuthenticatedAction {
   type: typeof WS_AUTHENTICATED;
-  payload: string; // { username }
+  payload: { displayName: string }
 }
 
 export interface WsUserJoinedAction {
   type: typeof WS_USER_JOINED;
-  payload: Game;
+  payload: {
+    game: Game, whiteName: string | null, blackName: string | null;
+  }
 }
 
 export interface WsWatchedGameAction {
   type: typeof WS_WATCHED_GAME;
-  payload: Game;
+  payload: {
+    game: Game, whiteName: string | null, blackName: string | null;
+  }
+}
+
+export interface WsUserNameChangedAction {
+  type: typeof WS_USER_NAME_CHANGED;
+  payload: {
+    userId: string,
+    displayName: string
+  }
 }
 
 export type WebsocketActionTypes = Authenticate | OpenWsAction | WsChangeNameAction |
-  WsWatchGameAction | WsJoinGameAction | WsAuthenticatedAction | WsUserJoinedAction | WsWatchedGameAction
+  WsWatchGameAction | WsJoinGameAction | WsAuthenticatedAction | WsUserJoinedAction | WsWatchedGameAction |
+  WsUserNameChangedAction
