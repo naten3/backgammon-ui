@@ -1,0 +1,16 @@
+.playerNameBar {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.name-icon {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.display-name {
+
+}

@@ -1,0 +1,13 @@
+.player-bar {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.join-button {
+    position: absolute;
+    left: 10px;
+}

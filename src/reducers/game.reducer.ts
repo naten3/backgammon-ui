@@ -2,7 +2,7 @@ import { GameState } from "../store/game/types";
 import { Color } from "../model/game.models";
 import { GameActionTypes, SEND_MESSAGE, DELETE_MESSAGE } from "../actions/game/types";
 import { AllActionTypes } from "../actions/allActions";
-import { WS_USER_JOINED, WS_WATCHED_GAME, WsUserJoinedAction, WsWatchedGameAction } from "../actions/ws/types";
+import { WS_USER_JOINED, WS_WATCHED_GAME, WsUserJoinedAction, WsWatchedGameAction, WS_USER_NAME_CHANGED, WsUserNameChangedAction } from "../actions/ws/types";
 
 const initialState: GameState = {
   game: {
@@ -22,7 +22,7 @@ const initialState: GameState = {
 
 export function gameReducer(
   state = initialState,
-  action: WsUserJoinedAction | WsWatchedGameAction
+  action: WsUserJoinedAction | WsWatchedGameAction | WsUserNameChangedAction
 ): GameState {
   switch (action.type) {
     case WS_WATCHED_GAME:
@@ -33,6 +33,20 @@ export function gameReducer(
         whiteName: action.payload.whiteName,
         blackName: action.payload.blackName
       };
+    case WS_USER_NAME_CHANGED:
+      if (state.game.white === action.payload.userId) {
+        return {
+          ...state,
+          whiteName: action.payload.displayName
+        }
+      } else if (state.game.black === action.payload.userId) {
+        return {
+          ...state,
+          blackName: action.payload.displayName
+        }
+      } else {
+        return state;
+      }
     default:
       return state
   }
