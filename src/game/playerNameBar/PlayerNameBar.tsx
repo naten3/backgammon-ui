@@ -8,7 +8,7 @@ interface OwnProps {
 
 const PlayerNameBar: FC<OwnProps> = function (props: OwnProps) {
   return (
-    <div className="playerNameBar" >
+    <div className="player-name-bar" >
       <div className="name-icon">
         <span role="img" aria-label="silhouette">👤</span>
       </div>

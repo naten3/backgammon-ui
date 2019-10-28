@@ -7,10 +7,12 @@ import { Game } from '../store/game/types';
 import Board from './Board';
 import { AppState } from "../reducers/root.reducer";
 import PlayerNameBar from './playerNameBar/PlayerNameBar';
+import SideTray from './sideTray/SideTray';
 import { ThunkDispatch } from "redux-thunk";
 import { navigatedToGameAction } from "../actions/user/actions";
 import { websocketJoinGame } from "../actions/ws/actions";
 import './game.css'
+import { Color } from "../model/game.models";
 
 export interface OwnProps {
   propFromParent: number;
@@ -20,6 +22,8 @@ interface StateProps {
   game: Game,
   blackName: string,
   whiteName: string
+  isPlaying: boolean
+  myColor: Color
 }
 
 interface DispatchProps {
@@ -56,10 +60,15 @@ const GameComponent: FC<Props> = function (props: Props): ReactElement<Props> {
     <div className="top-bar player-bar">
       {whitePlayerBar}
       <div className="join-button">
-        <Button size="medium" color="primary" onClick={joinGame}>Join Game</Button>
+        {(!props.game || !props.game.black || !props.game.white) &&
+          <Button size="medium" color="primary" onClick={joinGame}>Join Game</Button>
+        }
       </div>
     </div>
-    <Board board={props.game.board} />
+    <div className="play-area">
+      <SideTray game={props.game} isPlaying={props.isPlaying} myColor={props.myColor}></SideTray>
+      <Board board={props.game.board} />
+    </div>
     <div className="bottom-bar player-bar">
       {blackPlayerBar}
     </div>
@@ -68,7 +77,27 @@ const GameComponent: FC<Props> = function (props: Props): ReactElement<Props> {
 }
 
 const mapStateToProps = (state: AppState, ownProps: OwnProps): StateProps => {
-  return { game: state.game.game, blackName: state.game.blackName, whiteName: state.game.whiteName }
+  const isPlaying = state.game.game && (state.game.game.black === state.user.userId ||
+    state.game.game.white === state.user.userId);
+  let myColor: Color;
+
+  if (!isPlaying) {
+    myColor = Color.None;
+  } else if (state.game.game.black === state.user.userId) {
+    myColor = Color.Black;
+  } else if (state.game.game.white === state.user.userId) {
+    myColor = Color.White;
+  } else {
+    throw Error("No color matches")
+  }
+
+  return {
+    game: state.game.game,
+    blackName: state.game.blackName,
+    whiteName: state.game.whiteName,
+    isPlaying: isPlaying,
+    myColor: myColor
+  }
 }
 
 const mapDispatchToProps = (dispatch: any) => ({

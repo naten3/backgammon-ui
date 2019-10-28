@@ -11,6 +11,7 @@ export const WS_AUTHENTICATED = 'wsAuthenticated';
 export const WS_WATCHED_GAME = 'wsWatchedGame';
 export const WS_USER_JOINED = 'wsUserJoined';
 export const WS_USER_NAME_CHANGED = 'wsUserNameChanged';
+export const WS_INITIAL_ROLL = 'wsInitialRoll';
 
 interface WebsocketSendAction {
   meta: { send: true }
@@ -38,6 +39,10 @@ export interface WsJoinGameAction extends WebsocketSendAction {
 export interface WsChangeNameAction extends WebsocketSendAction {
   type: typeof WS_CHANGE_NAME;
   payload: string;
+}
+
+export interface WsInitialRollAction extends WebsocketSendAction {
+  type: typeof WS_INITIAL_ROLL;
 }
 
 // received messages

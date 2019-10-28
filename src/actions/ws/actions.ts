@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setToken, getUserIdFromToken, getToken } from '../../util/storage.utils'
-import { WS_AUTHENTICATE, WebsocketActionTypes, WS_WATCH_GAME, WS_JOIN_GAME, WS_CHANGE_NAME, WsChangeNameAction } from "./types";
+import { WS_AUTHENTICATE, WebsocketActionTypes, WS_WATCH_GAME, WS_JOIN_GAME, WS_CHANGE_NAME, WsChangeNameAction, WsInitialRollAction, WS_INITIAL_ROLL } from "./types";
 import { ThunkDispatch } from 'redux-thunk';
 import { AppState } from '../../reducers/root.reducer';
 
@@ -32,6 +32,13 @@ export function websocketChangeName(displayName: string): WsChangeNameAction {
   return {
     type: WS_CHANGE_NAME,
     payload: displayName,
+    meta: { send: true }
+  }
+}
+
+export function websocketInitialRoll(): WsInitialRollAction {
+  return {
+    type: WS_INITIAL_ROLL,
     meta: { send: true }
   }
 }
